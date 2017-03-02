@@ -3,11 +3,12 @@ module.exports = (sequelize, DataTypes) => {
   var Product = sequelize.define('Product', {
     id:     {type: DataTypes.INTEGER, primaryKey: true,  autoIncrement: true},
     nome:   {type: DataTypes.STRING(45), allowNull: false, unique: true},
+    foto:   {type: DataTypes.STRING(30), allowNull: false, unique: true},
     preco:  {type: DataTypes.DECIMAL(8,2), allowNull: false}
   }, {
     classMethods: {
       associate: (models) => {
-        
+
         Product.belongsTo(models.Category, {
           onDelete: "RESTRICT",
           foreignKey: {
@@ -15,7 +16,7 @@ module.exports = (sequelize, DataTypes) => {
             name: 'categoria'
           }
         });
-        
+
       }
     }
   });
